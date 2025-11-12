@@ -4,30 +4,36 @@ import java.awt.GraphicsEnvironment;
 
 public class Finestra extends JFrame {
 
+    private Piattaforma piattaforma;
+
     public Finestra(String title){
-        super(title);
+        super(title); //chiama il costruttre JFrame
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        piattaforma = new Piattaforma();
 
-        this.setUndecorated(true);
+        this.add(piattaforma);
 
-        this.pack();
-        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //dice che quando l'utente preme per esempio la X l'applicazione deve terminare
 
-        setFullscreen();
+        this.setUndecorated(true); //rimuove decorazioni, bordi e barra del titolo
+
+        this.pack();//adatta la finestra ai contenuti all'interno
+        this.setVisible(true);  //rende la finestra visibile sullo schermo
+
+        setFullscreen();  //mette lo schermo intero
 
         System.out.println("creata finestra guh");
     }
 
     private void setFullscreen() {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice device = ge.getDefaultScreenDevice();
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); //queste due robe che non so che cazzo siano identificano lo schermo
+        GraphicsDevice device = ge.getDefaultScreenDevice(); //sul quale sta runnando l'applicazione
         
         if (device.isFullScreenSupported()) {
-            device.setFullScreenWindow(this);
+            device.setFullScreenWindow(this); //chiave, affida la gestione della finestra a JFrame, e quindi viene attuato il fullscreen eccetera
         } else {
             System.err.println("Modalità Full Screen esclusiva non supportata su questo dispositivo. La finestra sarà massimizzata.");
-            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH); //se non è supportata, si massimizza la finestra
         }
     }
     

@@ -1,14 +1,12 @@
 
 public class Variabili {
 
-    public static void var() {
-
         int stato = 0; // questa variabile viene dichiarato qui, ma serve per ogni file, per ora ne ho
                        // 2 di stati, lo stato 0 sarebbe il menu, e lo stato 1 avvia il gioco vero e
                        // proprio
-        int bordoXdestra = 15000;
-        int bordoXsinistra = -15000;
-        int limiteY = -10000;
+        public static final int bordoXdestra = 15000;   //final indica valore fisso, è una costante
+        public static final int bordoXsinistra = -15000;
+        public static final int limiteY = -10000;
         Vector2D playerpos = new Vector2D(900, 900);
 
         Vector2D camerapos;
@@ -58,7 +56,7 @@ public class Variabili {
 
         boolean attaccando = false;
 
-        float ypiattaforma = 900;
+        public static final int ypiattaforma = 900;
 
         int clock = 0;
         float tempoDelta = 0;
@@ -84,4 +82,4 @@ public class Variabili {
 
     }
 
-}
+
