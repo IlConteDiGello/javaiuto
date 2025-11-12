@@ -1,7 +1,7 @@
-public class runner {
+public class Runner {
     public static void main(String[] args){
-        finestra gioco = new finestra("maremma maiala");
-        variabili variabili = new variabili();
+        Finestra gioco = new Finestra("maremma maiala");
+        Variabili Variabili = new Variabili();
         linea piattaforma = new linea();
     }
 }

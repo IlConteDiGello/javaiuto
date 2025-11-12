@@ -2,9 +2,9 @@ import javax.swing.JFrame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
-public class finestra extends JFrame {
+public class Finestra extends JFrame {
 
-    public finestra(String title){
+    public Finestra(String title){
         super(title);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

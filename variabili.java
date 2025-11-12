@@ -1,5 +1,5 @@
 
-public class variabili {
+public class Variabili {
 
     public static void var() {
 
