@@ -1,8 +1,26 @@
 import javax.swing.JFrame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.KeyListener;
 
-public class Finestra extends JFrame {
+public class Finestra extends JFrame implements Runnable, KeyListener{
+
+    private Player player;
+    private Thread thread;
+
+    private int cameraOffsetX=0;
+    private int cameraOffsetY=0;
+
+    public pannelloDiGioco(){
+        player = new Player(getWidth() / 2, 500);
+
+        this.addKeyListener(this);
+        this.setFocusable(true);
+
+        thread = new Thread(this);
+        thread.start();
+    }
+    
 
     private Piattaforma piattaforma;
 

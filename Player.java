@@ -1,10 +1,10 @@
-import java.awt.event.KeyEvent;
+import java.awt.event.KeyEvent; //serve a controllare i tasti premuti
 
 public class Player {
     public Vector2D playerpos; // posizione attuale
     public float velocitax = 0;
-    public float velocitay = 0;
-    public float gravita = 1;
+    public float velocitay = 0; //velocità di caduta
+    public final float gravita = 1; //costante della gravità
 
     //booleane di input per vedere dove stai annando
     public boolean sinistra = false;
@@ -34,5 +34,35 @@ public class Player {
 
     public Player(float Xinit, float Yinit){
         playerpos = new Vector2D(Xinit, Yinit);
+    }
+
+    public void movimento(){
+        long clock=System.currentTimeMillis();
+        int VMax = 17, VMin = -17;
+        int delay = 50; //in millisecondi
+        if(sinistra && clock - UltimoAumentoSpeed >= delay && velocitax <=VMax){
+            if(velocitax >= 0) velocitax -=3;
+            else velocitax--;
+            UltimoAumentoSpeed = clock;
+        }else if(destra && clock - UltimoAumentoSpeed >= delay && velocitax <= VMax) {
+            if(velocitax <= 0) velocitax+=3;
+            else velocitax++;
+            UltimoAumentoSpeed = clock;
+        }else if(!sinistra && !destra && clock - UltimoAumentoSpeed >= delay && velocitax!=0){
+            if(velocitax < 0) velocitax++;
+            else if(velocitax > 0) velocitax--;
+            UltimoAumentoSpeed = clock;
+        }
+    }
+
+    public void inputs(int keyCode, boolean premuto){
+        switch(keyCode){
+            case KeyEvent.VK_4:
+                sinistra = premuto;
+                break;
+            case KeyEvent.VK_D:
+                destra=premuto;
+                break;
+        }
     }
 }
