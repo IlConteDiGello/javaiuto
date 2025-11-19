@@ -1,39 +1,17 @@
 import javax.swing.JFrame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.event.KeyListener;
 
-public class Finestra extends JFrame implements Runnable, KeyListener{
 
-    private Player player;
-    private Thread thread;
+public class Finestra extends JFrame {
 
-    private int cameraOffsetX=0;
-    private int cameraOffsetY=0;
-
-    public pannelloDiGioco(){
-        player = new Player(getWidth() / 2, 500);
-
-        this.addKeyListener(this);
-        this.setFocusable(true);
-
-        thread = new Thread(this);
-        thread.start();
-    }
-    
-
-    private Piattaforma piattaforma;
-
+    private Pannello pannello;
     public Finestra(String title){
         super(title); //chiama il costruttre JFrame
 
-        piattaforma = new Piattaforma();
+        pannello = new Pannello();
 
-        this.add(piattaforma);
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //dice che quando l'utente preme per esempio la X l'applicazione deve terminare
-
-        this.setUndecorated(true); //rimuove decorazioni, bordi e barra del titolo
+        this.add(pannello);
 
         this.pack();//adatta la finestra ai contenuti all'interno
         this.setVisible(true);  //rende la finestra visibile sullo schermo

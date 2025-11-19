@@ -36,6 +36,13 @@ public class Player {
         playerpos = new Vector2D(Xinit, Yinit);
     }
 
+    public void Update(){
+
+        movimento();
+        playerpos.x += velocitax;
+        playerpos.y += velocitay;
+    }
+
     public void movimento(){
         long clock=System.currentTimeMillis();
         int VMax = 17, VMin = -17;
@@ -65,4 +72,5 @@ public class Player {
                 break;
         }
     }
+
 }

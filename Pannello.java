@@ -1,8 +1,11 @@
+
 import javax.swing.JPanel; // Necessario per getWidth(), addKeyListener(), setFocusable()
 import java.awt.Graphics;
 import java.awt.event.KeyListener; // Necessario per l'interfaccia KeyListener
 import java.awt.event.KeyEvent;    // Necessario per l'oggetto KeyEvent
 import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Color;
 
 public class Pannello extends JPanel implements Runnable, KeyListener {
     private Player player;
@@ -43,29 +46,29 @@ public class Pannello extends JPanel implements Runnable, KeyListener {
     }
     private void updateCamera(){
     cameraOffsetX = (int) (player.playerpos.x - getWidth()/2);
-    cameraOffsetY = (int) (player.playerpos.y. - getHeight()/2);
+    cameraOffsetY = (int) (player.playerpos.y - getHeight()/2);
 }
 
 @Override
 
-protected void paint(Graphics g){
+protected void paintComponent(Graphics g){
     super.paintComponent(g);
 
     Graphics2D g2d = (Graphics2D) g;
 
     g2d.translate(-cameraOffsetX, -cameraOffsetY);
 
-    WorldGenerator.drawWorld(g2d);
+    Piattaforma.draw(g2d);
 
-    g2d.setColor(color.RED);
+    g2d.setColor(Color.RED);
 
     g2d.fillOval((int)player.playerpos.x - 15, (int)player.playerpos.y - 30,30, 30);
 
     g2d.translate(cameraOffsetX, cameraOffsetY);
 }
 
-@Override public void keyPressed(KeyEvent e) { player.setInputState(e.getKeyCode(), true);}
-@Override public void keyReleased(KeyEvent e) { player.setInputState(e.getKeyCode(), false);}
+@Override public void keyPressed(KeyEvent e) { player.inputs(e.getKeyCode(), true);}
+@Override public void keyReleased(KeyEvent e) { player.inputs(e.getKeyCode(), false);}
 @Override public void keyTyped(KeyEvent e) {}
 }
 
