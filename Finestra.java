@@ -9,6 +9,8 @@ public class Finestra extends JFrame {
     public Finestra(String title){
         super(title); //chiama il costruttre JFrame
 
+        this.setUndecorated(true);
+        
         pannello = new Pannello();
 
         this.add(pannello);
