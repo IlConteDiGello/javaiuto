@@ -1,38 +1,25 @@
 import javax.swing.JFrame;
-import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.GraphicsDevice;
+public class Finestra extends JFrame{   //per creare la finestra
 
+    public static JFrame CreaFinestra(){
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); //ottengo ambiente grafico
+        GraphicsDevice gd = ge.getDefaultScreenDevice(); //ottiene lo schermo su cui visualizzare la finestra
 
-public class Finestra extends JFrame {
+        Finestra finestra = new Finestra();
+        finestra.setUndecorated(true); //rimuove bordi, pulsanti eccetera
+        finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    private Pannello pannello;
-    public Finestra(String title){
-        super(title); //chiama il costruttre JFrame
-
-        this.setUndecorated(true);
-        
-        pannello = new Pannello();
-
-        this.add(pannello);
-
-        this.pack();//adatta la finestra ai contenuti all'interno
-        this.setVisible(true);  //rende la finestra visibile sullo schermo
-
-        setFullscreen();  //mette lo schermo intero
-
-        System.out.println("creata finestra guh");
-    }
-
-    private void setFullscreen() {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); //queste due robe che non so che cazzo siano identificano lo schermo
-        GraphicsDevice device = ge.getDefaultScreenDevice(); //sul quale sta runnando l'applicazione
-        
-        if (device.isFullScreenSupported()) {
-            device.setFullScreenWindow(this); //chiave, affida la gestione della finestra a JFrame, e quindi viene attuato il fullscreen eccetera
-        } else {
-            System.err.println("Modalità Full Screen esclusiva non supportata su questo dispositivo. La finestra sarà massimizzata.");
-            this.setExtendedState(JFrame.MAXIMIZED_BOTH); //se non è supportata, si massimizza la finestra
+        if(gd.isFullScreenSupported()){ //se il dispositivo supporta la funzione di fullscreen
+            gd.setFullScreenWindow(finestra); //setta fullscreen
+        }else{ //altrimenti
+            finestra.setSize(ge.getMaximumWindowBounds().getSize()); //massimizza la finestra
         }
+        
+        finestra.setTitle("Maremma maiala");
+        System.out.println("Creata finestra guh");
+
+        return finestra;
     }
-    
 }

@@ -14,11 +14,14 @@ public class Pannello extends JPanel implements Runnable, KeyListener {
     private int cameraOffsetX=0;
     private int cameraOffsetY=0;
 
-    public void pannelloDiGioco(){
+    public void Pannello(){
         player = new Player(getWidth() / 2, 500);
 
         this.addKeyListener(this);
         this.setFocusable(true);
+
+        this.setBackground(Color.WHITE);
+        this.setOpaque(true);
 
         thread = new Thread(this);
         thread.start();
@@ -39,7 +42,7 @@ public class Pannello extends JPanel implements Runnable, KeyListener {
 
             if(delta >= 1){
                 player.Update();
-
+                repaint();
                 delta--;
             }
         }
